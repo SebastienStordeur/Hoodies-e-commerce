@@ -14,4 +14,4 @@ const Button: React.FC<button> = ({ id, children, onClick }) => {
   );
 };
 
-export default Button;
+export default React.memo(Button);
