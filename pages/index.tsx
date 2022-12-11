@@ -1,10 +1,13 @@
-import Button from "../components/UI/Button";
+import { NextPage } from "next";
+import React from "react";
+import { Header } from "../components";
 
-export default function Home() {
+const Home: NextPage = () => {
   return (
-    <div>
-      <h1 className="text-xs">Tets</h1>
-      <Button>test</Button>
-    </div>
+    <React.Fragment>
+      <Header>1</Header>
+    </React.Fragment>
   );
-}
+};
+
+export default Home;

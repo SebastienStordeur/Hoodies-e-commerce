@@ -1,11 +1,11 @@
 import "@testing-library/jest-dom/extend-expect";
 import React from "react";
-import { fireEvent, queryByAttribute, render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import Button from "../../components/UI/Button";
 
 describe("Button component tests", () => {
   const onClickFunction = jest.fn();
-  const { getByText, getByTestId } = render(
+  const { getByText } = render(
     <Button id="button-id" onClick={onClickFunction}>
       Click
     </Button>
@@ -13,7 +13,7 @@ describe("Button component tests", () => {
 
   const button = getByText("Click");
 
-  it("Renders correctly", () => {
+  it("Should render correctly", () => {
     expect(button).toBeInTheDocument();
   });
 
@@ -21,12 +21,12 @@ describe("Button component tests", () => {
     expect(button).toHaveTextContent("Click");
   });
 
-  /*   it("Should have a button id", () => {
-    expect(queryByAttribute(null, "id")).toBeInTheDocument();
-  }); */
+  it("Should have a button id", () => {
+    expect(button.id).not.toBeNull();
+  });
 
   /** This works if tests above are commented */
-  it("Should trigger an action on click", () => {
+  it("Should call the onClickFunction prop when clicked", () => {
     fireEvent.click(button);
     expect(onClickFunction).toHaveBeenCalled();
   });
