@@ -1,11 +1,7 @@
 import React, { ReactNode } from "react";
 import Navbar from "../navbar/Navbar";
 
-interface HeaderProps {
-  children: ReactNode;
-}
-
-const Header: React.FC<HeaderProps> = ({ children }) => {
+const Header: React.FC = () => {
   return (
     <header
       id="header"

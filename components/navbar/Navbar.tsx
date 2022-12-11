@@ -2,6 +2,7 @@ import Image from "next/image";
 import React from "react";
 import { user } from "../../assets";
 import Logo from "./Logo/Logo";
+import Link from "next/link";
 
 const Navbar: React.FC = () => {
   return (
@@ -11,10 +12,10 @@ const Navbar: React.FC = () => {
     >
       <Logo />
       <div>
-        <div className="flex p-1">
+        <Link href="/signin" className="flex p-1">
           <Image src={user} alt="User icon" width={24} height={24} />
           <h2 className="hidden sm:block ml-2 cursor-pointer">Sign In</h2>
-        </div>
+        </Link>
       </div>
     </nav>
   );

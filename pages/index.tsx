@@ -5,7 +5,7 @@ import { Header } from "../components";
 const Home: NextPage = () => {
   return (
     <React.Fragment>
-      <Header>1</Header>
+      <Header />
     </React.Fragment>
   );
 };
