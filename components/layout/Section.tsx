@@ -1,0 +1,16 @@
+import React, { ReactNode } from "react";
+
+interface SectionProps {
+  id: string;
+  children: ReactNode;
+}
+
+const Section: React.FC<SectionProps> = ({ id, children }) => {
+  return (
+    <section id={id} className="max-w-[1440px] mx-auto px-6">
+      {children}
+    </section>
+  );
+};
+
+export default Section;

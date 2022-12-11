@@ -1,11 +1,17 @@
+import axios from "axios";
 import React from "react";
-import Form from "../../layout/Form";
+import { Form, InputValidator } from "../../";
 import { Button } from "../../";
-import InputValidator from "../Validators/InputValidator";
 
 const SignupForm = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const newUser = {
+      name: "Sebastien Stordeur",
+      email: "stordeursebastien0@gmail.com",
+      password: "password",
+    };
+    axios.post("/api/user/signup", { newUser }).then((res) => console.log(res));
     console.log("submit");
   };
   return (
