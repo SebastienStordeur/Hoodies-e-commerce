@@ -7,11 +7,19 @@ const SignupForm = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const newUser = {
-      name: "Sebastien Stordeur",
+      firstName: "Sebastien",
+      lastName: "Stordeur",
       email: "stordeursebastien0@gmail.com",
       password: "password",
     };
-    axios.post("/api/user/signup", { newUser }).then((res) => console.log(res));
+    axios
+      .post("/api/user/signup", {
+        firstName: "Sebastien",
+        lastName: "Stordeur",
+        email: "stordeursebastien0@gmail.com",
+        password: "password",
+      })
+      .then((res) => console.log(res));
     console.log("submit");
   };
   return (
