@@ -11,10 +11,11 @@ const SignupForm = () => {
       .post("/api/user/signup", {
         firstName: "Sebastien",
         lastName: "Stordeur",
-        email: "stordeursebastien0@gmail.com",
+        email: "test@test.com",
         password: "password",
       })
-      .then((res) => console.log(res));
+      .then((res) => console.log(res))
+      .catch((err) => console.error(err));
     console.log("submit");
   };
   return (

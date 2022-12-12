@@ -1,10 +1,16 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { httpSignup } from "./routes/users.controller";
+import { setHttpClientAndAgentOptions } from "next/dist/server/config";
+import httpLogin from "./user/login";
+import httpSignup from "./user/signup";
 
 export default function user(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method === "POST" && req.url === "/api/user/signup") {
-    httpSignup(req, res);
+  if (req.method === "POST") {
+    if (req.url === "/api/user/signup") {
+      httpSignup(req, res);
+    } else if (req.url === "/api/user/login") {
+      httpLogin(req, res);
+    }
   } else {
-    res.status(405).end();
+    return res.status(405).end();
   }
 }

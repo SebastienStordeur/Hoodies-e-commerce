@@ -1,3 +1,4 @@
+import axios from "axios";
 import Link from "next/link";
 import React from "react";
 import { Button, Form, InputValidator } from "../../";
@@ -6,6 +7,12 @@ const SigninForm = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log("submit");
+    axios
+      .post("/api/user/login", {
+        email: "test@test.com",
+        password: "password",
+      })
+      .then((res) => console.log(res));
   };
 
   return (
