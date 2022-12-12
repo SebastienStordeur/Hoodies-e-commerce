@@ -9,6 +9,7 @@ module.exports = {
       colors: {
         green: "#2a9d8f",
         orange: "#f4a261",
+        red: "#e63946",
       },
     },
   },

@@ -13,10 +13,12 @@ const SigninForm = () => {
       <Form title="Sign In" onSubmit={handleSubmit}>
         <InputValidator id="email" label="Your email" type="email " />
         <InputValidator id="password" label="Your password" type="password" />
-        <Button type="submit">Login to your account</Button>
+        <Button className="mt-4" type="submit">
+          Login to your account
+        </Button>
         <p className="text-sm font-medium mt-2 text-center">
-          Don't have an account?
-          <Link href="/signup" className="cursor-pointer text-orange font-bold">
+          Don't have an account? &nbsp;
+          <Link href="/signup" className="cursor-pointer text-green font-bold">
             Create one
           </Link>
         </p>

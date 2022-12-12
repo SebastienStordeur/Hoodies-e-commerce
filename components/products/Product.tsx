@@ -11,11 +11,11 @@ interface ProductProps {
 const Product: React.FC<ProductProps> = ({ imageCover, title, price }) => {
   return (
     <Card>
-      <div className="w-full h-72 overflow-hidden">
-        <Image src={imageCover} alt="" width={300} height={600} />
+      <div className="max-w-xs h-72 overflow-hidden mx-auto">
+        <Image src={imageCover} alt={title} width={300} height={600} priority />
       </div>
-      <h3 className="font-bold">{title}</h3>
-      <span>{price}$</span>
+      <h3 className="font-medium">{title}</h3>
+      <span className="font-semibold">{price}€</span>
     </Card>
   );
 };

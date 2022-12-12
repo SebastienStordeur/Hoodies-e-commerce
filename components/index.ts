@@ -1,3 +1,4 @@
+import ProductSection from "./products/ProductSection";
 /** Layout exports */
 export { default as Header } from "./layout/Header";
 export { default as Main } from "./layout/Main";
@@ -19,3 +20,7 @@ export { default as InputValidator } from "./forms/Validators/InputValidator";
 export { default as Label } from "./forms/Validators/Label";
 export { default as SignupForm } from "./forms/signup-form/SignupForm";
 export { default as SigninForm } from "./forms/signin-form/SigninForm";
+
+/** Products components exports */
+export { default as Product } from "./products/Product";
+export { default as ProductSection } from "./products/ProductSection";

@@ -7,12 +7,6 @@ import { Button } from "../../";
 const SignupForm = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const newUser = {
-      firstName: "Sebastien",
-      lastName: "Stordeur",
-      email: "stordeursebastien0@gmail.com",
-      password: "password",
-    };
     axios
       .post("/api/user/signup", {
         firstName: "Sebastien",
@@ -38,8 +32,8 @@ const SignupForm = () => {
           Create your account
         </Button>
         <p className="text-sm font-medium mt-2 text-center">
-          Don't have an account?
-          <Link href="/signin" className="cursor-pointer text-orange font-bold">
+          Don't have an account? &nbsp;
+          <Link href="/signin" className="cursor-pointer text-green font-bold">
             Login
           </Link>
         </p>

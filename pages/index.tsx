@@ -1,24 +1,13 @@
 import { NextPage } from "next";
 import React from "react";
-import { Header, Section } from "../components";
-import Product from "../components/products/Product";
+import { Header } from "../components";
+import { ProductSection } from "../components";
 
 const Home: NextPage = () => {
   return (
     <React.Fragment>
       <Header />
-      <Section id="product-section">
-        <Product
-          imageCover="/hoodie.webp"
-          title="Hoodie Yellow XL"
-          price="49.99"
-        />
-        <Product
-          imageCover="/hoodie.webp"
-          title="Hoodie Yellow XL"
-          price="49.99"
-        />
-      </Section>
+      <ProductSection />
     </React.Fragment>
   );
 };
