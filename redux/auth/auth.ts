@@ -10,11 +10,21 @@ const initialState: AuthSliceState = {
   },
 };
 
+interface ILogin {
+  token: string;
+  expirationTime: string;
+}
+
 const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    login(state, action: PayloadAction) {},
+    login(state, action: PayloadAction<ILogin>) {
+      const payload = action.payload;
+      localStorage.setItem("token", payload.token);
+      state.isAuthenticated = true;
+      return state;
+    },
     logout(state) {
       localStorage.removeItem("token");
       return (state = initialState);
