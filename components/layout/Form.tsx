@@ -8,8 +8,11 @@ interface FormProps {
 
 const Form: React.FC<FormProps> = ({ children, title, onSubmit }) => {
   return (
-    <form onSubmit={onSubmit}>
-      <h3>{title}</h3>
+    <form
+      className="shadow-md w-full max-w-96 mx-auto mt-8 px-8 py-12"
+      onSubmit={onSubmit}
+    >
+      <h3 className="font-bold text-xl mb-8">{title}</h3>
       {children}
     </form>
   );

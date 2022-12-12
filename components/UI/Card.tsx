@@ -5,7 +5,7 @@ interface CardProps {
 }
 
 const Card: React.FC<CardProps> = ({ children }) => {
-  return <article className="">{children}</article>;
+  return <article className="overflow-hidden">{children}</article>;
 };
 
 export default Card;

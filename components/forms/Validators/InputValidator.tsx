@@ -10,7 +10,7 @@ interface InputValidatorProps {
 
 const InputValidator: React.FC<InputValidatorProps> = ({ id, label, type }) => {
   return (
-    <div className="relative flex flex-col">
+    <div className="relative flex flex-col my-2">
       <Label id={id} label={label} />
       <Input id={id} type={type} />
     </div>
