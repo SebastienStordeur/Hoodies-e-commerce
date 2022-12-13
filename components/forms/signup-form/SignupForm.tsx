@@ -1,13 +1,24 @@
 import axios from "axios";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import { Form, InputValidator } from "../../";
 import { Button } from "../../";
+import { signupFormValidation } from "../../../services/formValidation/SignupFornValidation";
 
 const SignupForm = () => {
+  const [formHasError, setFormHasError] = useState({
+    passwordHasError: false,
+    passwordMessageError: "",
+  });
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const newUser = {
+      fullName: "Sebastien Stordeur",
+      email: "test@test.com",
+      password: "password",
+      confirmPassword: "password",
+    };
     event.preventDefault();
-    axios
+    /*     axios
       .post("/api/user/signup", {
         firstName: "Sebastien",
         lastName: "Stordeur",
@@ -15,7 +26,8 @@ const SignupForm = () => {
         password: "password",
       })
       .then((res) => console.log(res))
-      .catch((err) => console.error(err));
+      .catch((err) => console.error(err)); */
+    signupFormValidation(newUser, setFormHasError);
     console.log("submit");
   };
   return (
@@ -29,6 +41,11 @@ const SignupForm = () => {
           label="Confirm your password"
           type="password"
         />
+        {formHasError.passwordHasError && (
+          <p className="text-red font-semibold text-sm">
+            {formHasError.passwordMessageError}
+          </p>
+        )}
         <Button className="mt-4" type="submit">
           Create your account
         </Button>

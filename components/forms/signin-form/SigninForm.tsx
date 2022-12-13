@@ -18,7 +18,7 @@ const SigninForm = () => {
   return (
     <section className="w-96 mx-auto">
       <Form title="Sign In" onSubmit={handleSubmit}>
-        <InputValidator id="email" label="Your email" type="email " />
+        <InputValidator id="email" label="Your email" type="email" />
         <InputValidator id="password" label="Your password" type="password" />
         <Button className="mt-4" type="submit">
           Login to your account
