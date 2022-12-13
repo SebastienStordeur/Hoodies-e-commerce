@@ -1,5 +1,8 @@
 export function signupFormValidation(user: any, setErrors: any) {
+  const email: string = user.email;
   const passwords: string[] = [user.password, user.confirmPassword];
+
+  validateEmail(email, setErrors);
   passwordValidation(passwords, setErrors);
 }
 
@@ -12,8 +15,40 @@ function passwordValidation(passwords: string[], setErrors: any) {
   }
 }
 
+function validateEmail(email: string, setErrors: any) {
+  const emailRegex =
+    /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
+
+  if (email.trim() === "") {
+    setErrors((prev: any) => {
+      return {
+        ...prev,
+        emailHasError: true,
+        emailMessageError: "Can't be empty",
+      };
+    });
+    return;
+  } else if (email.trim() !== "" && !emailRegex.test(email)) {
+    setErrors((prev: any) => {
+      return {
+        ...prev,
+        emailHasError: true,
+        emailMessageError: "Wrong email format",
+      };
+    });
+    return;
+  } else {
+    setErrors((prev: any) => {
+      return {
+        ...prev,
+        emailHasError: false,
+        emailMessageError: "",
+      };
+    });
+  }
+}
+
 function identicalPasswords(passwords: Set<string>, setErrors: any) {
-  console.log(passwords);
   if (passwords.size === 1) {
     setErrors((prev: any) => {
       return {
@@ -22,7 +57,6 @@ function identicalPasswords(passwords: Set<string>, setErrors: any) {
         passwordMessageError: "",
       };
     });
-    return true;
   } else {
     setErrors((prev: any) => {
       return {
@@ -31,7 +65,6 @@ function identicalPasswords(passwords: Set<string>, setErrors: any) {
         passwordMessageError: "Your passwords must be identical",
       };
     });
-    return false;
   }
 }
 

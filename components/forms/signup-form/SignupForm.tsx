@@ -1,21 +1,29 @@
 import axios from "axios";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Form, InputValidator } from "../../";
 import { Button } from "../../";
 import { signupFormValidation } from "../../../services/formValidation/SignupFornValidation";
 
 const SignupForm = () => {
+  const nameInputRef = useRef<HTMLInputElement>(null);
+  const emailInputRef = useRef<HTMLInputElement>(null);
+  const passwordInputRef = useRef<HTMLInputElement>(null);
+  const confirmPasswordInputRef = useRef<HTMLInputElement>(null);
+
   const [formHasError, setFormHasError] = useState({
+    emailHasError: false,
+    emailMessageError: "",
     passwordHasError: false,
     passwordMessageError: "",
   });
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     const newUser = {
-      fullName: "Sebastien Stordeur",
-      email: "test@test.com",
-      password: "password",
-      confirmPassword: "password",
+      fullName: nameInputRef.current?.value,
+      email: emailInputRef.current?.value,
+      password: passwordInputRef.current?.value,
+      confirmPassword: confirmPasswordInputRef.current?.value,
     };
     event.preventDefault();
     /*     axios
