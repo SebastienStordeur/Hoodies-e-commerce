@@ -26,6 +26,8 @@ const SignupForm = () => {
       confirmPassword: confirmPasswordInputRef.current?.value,
     };
     event.preventDefault();
+
+    console.log(newUser.fullName);
     /*     axios
       .post("/api/user/signup", {
         firstName: "Sebastien",
@@ -41,13 +43,29 @@ const SignupForm = () => {
   return (
     <section className="w-96 mx-auto">
       <Form title="Sign Up" onSubmit={handleSubmit}>
-        <InputValidator id="name" label="Your name" type="text" />
-        <InputValidator id="email" label="Your email" type="email" />
-        <InputValidator id="password" label="Your password" type="password" />
+        <InputValidator
+          id="name"
+          label="Your name"
+          type="text"
+          ref={nameInputRef}
+        />
+        <InputValidator
+          id="email"
+          label="Your email"
+          type="email"
+          ref={emailInputRef}
+        />
+        <InputValidator
+          id="password"
+          label="Your password"
+          type="password"
+          ref={passwordInputRef}
+        />
         <InputValidator
           id="confirm-password"
           label="Confirm your password"
           type="password"
+          ref={confirmPasswordInputRef}
         />
         {formHasError.passwordHasError && (
           <p className="text-red font-semibold text-sm">
