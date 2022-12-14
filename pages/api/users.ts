@@ -1,5 +1,4 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { setHttpClientAndAgentOptions } from "next/dist/server/config";
 import httpLogin from "./user/login";
 import httpSignup from "./user/signup";
 

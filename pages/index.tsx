@@ -1,15 +1,40 @@
+import axios from "axios";
 import { NextPage } from "next";
-import React from "react";
+import React, { useEffect } from "react";
 import { Header } from "../components";
 import { ProductSection } from "../components";
 
-const Home: NextPage = () => {
+interface HomeProps {
+  hoodies: any;
+}
+
+const Home: NextPage<HomeProps> = ({ hoodies }) => {
   return (
     <React.Fragment>
       <Header />
-      <ProductSection />
+      <ProductSection hoodies={hoodies} />
     </React.Fragment>
   );
 };
 
 export default Home;
+
+export async function getServerSideProps() {
+  const { data } = await axios.get(
+    "http://localhost:3000/api/products/getProducts"
+  );
+
+  return {
+    props: {
+      hoodies: data.map((hoodie: any) => ({
+        id: hoodie._id.toString(),
+        title: hoodie.title,
+        brand: hoodie.brand,
+        colors: hoodie.colors,
+        size: hoodie.size,
+        price: hoodie.price,
+        images: hoodie.images,
+      })),
+    },
+  };
+}
