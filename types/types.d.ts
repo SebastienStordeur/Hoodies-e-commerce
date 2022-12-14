@@ -7,6 +7,13 @@ export type NewUser = {
   confirmPassword: string;
 };
 
+/** Define the user that is going to log in */
+
+export type LoginUser = {
+  email: string;
+  password: string;
+};
+
 /** Define the initial state of auth state */
 
 export type AuthSliceState = {

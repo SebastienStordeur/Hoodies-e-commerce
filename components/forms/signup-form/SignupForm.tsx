@@ -3,7 +3,8 @@ import Link from "next/link";
 import React, { useRef, useState } from "react";
 import { Form, InputValidator } from "../../";
 import { Button } from "../../";
-import { signupFormValidation } from "../../../services/formValidation/SignupFornValidation";
+import { signupFormValidation } from "../../../services/formValidation/SignupFormValidation";
+import { signup } from "../../../services/RequestAPI/Signup";
 
 const SignupForm = () => {
   const nameInputRef = useRef<HTMLInputElement>(null);
@@ -19,26 +20,18 @@ const SignupForm = () => {
   });
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    const newUser = {
-      fullName: nameInputRef.current?.value,
-      email: emailInputRef.current?.value,
-      password: passwordInputRef.current?.value,
-      confirmPassword: confirmPasswordInputRef.current?.value,
-    };
     event.preventDefault();
+    const newUser = {
+      fullName: nameInputRef.current!.value,
+      email: emailInputRef.current!.value,
+      password: passwordInputRef.current!.value,
+      confirmPassword: confirmPasswordInputRef.current!.value,
+    };
 
-    console.log(newUser.fullName);
-    /*     axios
-      .post("/api/user/signup", {
-        firstName: "Sebastien",
-        lastName: "Stordeur",
-        email: "test@test.com",
-        password: "password",
-      })
-      .then((res) => console.log(res))
-      .catch((err) => console.error(err)); */
     signupFormValidation(newUser, setFormHasError);
-    console.log("submit");
+    if (!formHasError.emailHasError && !formHasError.passwordHasError) {
+      signup(newUser);
+    }
   };
   return (
     <section className="w-96 mx-auto">
