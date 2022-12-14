@@ -3,8 +3,23 @@ import React from "react";
 import { user } from "../../assets";
 import Logo from "./Logo/Logo";
 import Link from "next/link";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../../redux/index";
+import { authActions } from "../../redux/auth/auth";
 
 const Navbar: React.FC = () => {
+  const dispatch = useDispatch();
+  const isAuthenticated = useSelector(
+    (state: RootState) => state.auth.isAuthenticated
+  );
+
+  const logout = () => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      dispatch(authActions.logout());
+    }
+  };
+
   return (
     <nav
       id="main-nav"
@@ -12,10 +27,20 @@ const Navbar: React.FC = () => {
     >
       <Logo />
       <div>
-        <Link href="/signin" className="flex p-1">
-          <Image src={user} alt="User icon" width={24} height={24} />
-          <h2 className="hidden sm:block ml-2 cursor-pointer">Sign In</h2>
-        </Link>
+        {!isAuthenticated && (
+          <Link href="/signin" className="flex p-1">
+            <React.Fragment>
+              <Image src={user} alt="User icon" width={24} height={24} />
+              <h2 className="hidden sm:block ml-2 cursor-pointer">Sign In</h2>
+            </React.Fragment>
+          </Link>
+        )}
+        {isAuthenticated && (
+          <span className="flex p-1" onClick={logout}>
+            <Image src={user} alt="User icon" width={24} height={24} />
+            <h2 className="hidden sm:block ml-2 cursor-pointer">Logout</h2>
+          </span>
+        )}
       </div>
     </nav>
   );

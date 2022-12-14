@@ -6,15 +6,21 @@ export default async function httpSignup(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  console.log(req.body);
   try {
+    const { firstName, lastName, email, password } = req.body;
     const url =
       "mongodb+srv://Sebastien:anrCqJLqSRmtM8Eh@cluster0.kdi6lcg.mongodb.net/hoodies";
     const client = await MongoClient.connect(url);
     const db = client.db("hoodies");
     const collection = db.collection("users");
 
-    const { firstName, lastName, email, password } = req.body;
+    const user = await collection.findOne({ email });
+    if (user) {
+      return res
+        .status(500)
+        .json({ status: 500, success: false, duplicate: true });
+    }
+
     const hashedPassword = bcrypt.hashSync(password, 10);
 
     await collection.insertOne({

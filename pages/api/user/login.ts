@@ -31,5 +31,7 @@ export default async function httpLogin(
       const token = jwt.sign(payload, "fdsfdsf", { expiresIn: "90d" });
       return res.status(200).json({ status: 200, success: true, token });
     }
+  } else {
+    return res.status(500).json({ status: 400, success: false });
   }
 }

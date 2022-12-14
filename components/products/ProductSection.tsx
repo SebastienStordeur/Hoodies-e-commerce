@@ -9,7 +9,7 @@ const ProductSection: React.FC = () => {
       className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
     >
       <Product
-        imageCover="/hoodie.webp"
+        imageCover="/assets/H1 BLACK.png"
         title="Hoodie Yellow XL"
         price="49.99"
       />

@@ -12,7 +12,6 @@ const initialState: AuthSliceState = {
 
 interface ILogin {
   token: string;
-  expirationTime: string;
 }
 
 const authSlice = createSlice({

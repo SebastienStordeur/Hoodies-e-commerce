@@ -1,9 +1,12 @@
 import Link from "next/link";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Button, Form, InputValidator } from "../../";
 import { login } from "../../../services/RequestAPI/Login";
 import { loginFormValidation } from "../../../services/formValidation/LoginFormValidation";
 import ErrorMessage from "../Validators/ErrorMessage";
+
+import { useDispatch } from "react-redux";
+import { authActions } from "../../../redux/auth/auth";
 
 const SigninForm = () => {
   const emailInputRef = useRef<HTMLInputElement>(null);
@@ -14,8 +17,11 @@ const SigninForm = () => {
     error: false,
     message: "",
   });
-  const [isSuccess, setIsSuccess] = useState<boolean>(false);
-  //let isSuccess: boolean;
+  const [isSuccess, setIsSuccess] = useState({
+    status: false,
+    token: "",
+  });
+  const dispatch = useDispatch();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -26,12 +32,13 @@ const SigninForm = () => {
 
     loginFormValidation(user, setLoginError);
     login(user, setLoginError, setIsSuccess);
-
-    if (isSuccess) {
-      //localStorage + redux
-      console.log("LOGIN SUCCESSFULLY");
-    }
   };
+
+  useEffect(() => {
+    if (isSuccess.status) {
+      dispatch(authActions.login(isSuccess));
+    }
+  }, [isSuccess]);
 
   return (
     <section className="w-full max-w-sm px-1 mx-auto">

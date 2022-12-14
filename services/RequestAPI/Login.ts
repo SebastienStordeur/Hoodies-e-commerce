@@ -6,7 +6,7 @@ export function login(user: any, setErrors: any, success: any) {
     axios
       .post("/api/user/login", { email, password })
       .then((res) => {
-        console.log(res.data.success);
+        console.log(res.data.token);
         setErrors((prev: any) => {
           return {
             ...prev,
@@ -14,10 +14,12 @@ export function login(user: any, setErrors: any, success: any) {
             message: "",
           };
         });
-        return success(res.data.success);
+        success({
+          status: true,
+          token: res.data.token,
+        });
       })
       .catch((err) => {
-        console.error(err);
         setErrors((prev: any) => {
           return {
             ...prev,
