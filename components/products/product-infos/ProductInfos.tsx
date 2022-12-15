@@ -1,4 +1,7 @@
 import React from "react";
+import Button from "../../UI/Button";
+import ColorSelector from "./ColorSelector";
+import SizeSelector from "./SizeSelector";
 
 interface ProductInfosProps {
   title: string;
@@ -24,21 +27,9 @@ const ProductInfos: React.FC<ProductInfosProps> = ({
           Price: <span className="text-red font-bold">{price}</span>
         </p>
       </div>
-      Colors:
-      {colors.map((color, index: number) => {
-        return (
-          <span className="mx-1" key={index}>
-            {color}
-          </span>
-        );
-      })}
-      {size.map((itemSize, index: number) => {
-        return (
-          <span className="mx-1" key={index}>
-            {itemSize}
-          </span>
-        );
-      })}
+      <ColorSelector colors={colors} />
+      <SizeSelector size={size} />
+      <Button className="mt-8">Add To Cart</Button>
     </div>
   );
 };

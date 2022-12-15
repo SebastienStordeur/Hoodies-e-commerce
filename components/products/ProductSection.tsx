@@ -14,7 +14,7 @@ const ProductSection: React.FC<ProductSectionProps> = ({ hoodies }) => {
       className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
     >
       {hoodies.map((hoodie: any) => {
-        const { id, images, title, price, brand } = hoodie;
+        const { id, images, title, price } = hoodie;
         return (
           <Link href={`/product/${id}`} key={id}>
             <Product imageCover={images[0]} title={title} price={price} />

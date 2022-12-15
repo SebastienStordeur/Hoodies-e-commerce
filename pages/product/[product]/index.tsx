@@ -1,16 +1,44 @@
 import axios from "axios";
 import { NextPage } from "next";
-import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { Header, Main, Section } from "../../../components";
 import SingleProductSection from "../../../components/products/SingleProductSection";
+import { authActions } from "../../../redux/auth/auth";
 
 interface ProductPageProps {
-  hoodie: any;
+  hoodie: Hoodie;
+}
+
+export interface Hoodie {
+  hoodie: {
+    id: string;
+    title: string;
+    brand: string;
+    colors: string[];
+    images: string[];
+    size: string[];
+    price: string;
+  };
 }
 
 const ProductPage: NextPage<ProductPageProps> = ({ hoodie }) => {
-  /* console.log(hoodie); */
+  const dispatch = useDispatch();
+  let token: string | null;
+
+  if (typeof window !== "undefined") {
+    token = localStorage.getItem("token");
+  }
+
+  useEffect(() => {
+    if (!token) return;
+    dispatch(authActions.retrieveStoredToken());
+    axios.get("/api/users").then((res) => {
+      const { id, fullName } = res.data.user;
+      dispatch(authActions.getProfile({ id, fullName }));
+    });
+  }, []);
+
   return (
     <React.Fragment>
       <Header />

@@ -5,9 +5,10 @@ import { Header } from "../components";
 import { ProductSection } from "../components";
 import { useDispatch } from "react-redux";
 import { authActions } from "../redux/auth/auth";
+import { Hoodie } from "./product/[product]";
 
 interface HomeProps {
-  hoodies: any;
+  hoodies: Hoodie[];
 }
 
 const Home: NextPage<HomeProps> = ({ hoodies }) => {

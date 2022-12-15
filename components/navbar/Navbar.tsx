@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import { user } from "../../assets";
+import { user, cart } from "../../assets";
 import Logo from "./Logo/Logo";
 import Link from "next/link";
 import { useSelector, useDispatch } from "react-redux";
@@ -36,10 +36,16 @@ const Navbar: React.FC = () => {
           </Link>
         )}
         {isAuthenticated && (
-          <span className="flex p-1" onClick={logout}>
-            <Image src={user} alt="User icon" width={24} height={24} />
-            <h2 className="hidden sm:block ml-2 cursor-pointer">Logout</h2>
-          </span>
+          <div className="flex items-center">
+            <span className="relative">
+              <Image src={cart} alt="Cart icon" width={24} height={24} />
+              <span className="absolute -top-4 left-2.5">0</span>
+            </span>
+            <span className="flex p-1 ml-4" onClick={logout}>
+              <Image src={user} alt="User icon" width={24} height={24} />
+              <h2 className="hidden sm:block ml-2 cursor-pointer">Logout</h2>
+            </span>
+          </div>
         )}
       </div>
     </nav>

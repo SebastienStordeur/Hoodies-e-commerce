@@ -28,6 +28,7 @@ export default async function httpSignup(
       name: firstName + " " + lastName,
       email: email,
       password: hashedPassword,
+      cart: [],
     });
 
     client.close();
