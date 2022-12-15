@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 
 const Signin: NextPage = () => {
   const router = useRouter();
-  const isAuthenticated = useSelector(
+  const isAuthenticated: boolean = useSelector(
     (state: RootState) => state.auth.isAuthenticated
   );
 
