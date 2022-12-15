@@ -28,6 +28,15 @@ const authSlice = createSlice({
       localStorage.removeItem("token");
       return (state = initialState);
     },
+    retrieveStoredToken(state) {
+      state.isAuthenticated = true;
+      return state;
+    },
+    getProfile(state, action: PayloadAction<any>) {
+      const payload = action.payload;
+      state.user.id = payload.id;
+      state.user.fullName = payload.fullName;
+    },
   },
 });
 

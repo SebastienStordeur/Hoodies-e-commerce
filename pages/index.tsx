@@ -3,12 +3,30 @@ import { NextPage } from "next";
 import React, { useEffect } from "react";
 import { Header } from "../components";
 import { ProductSection } from "../components";
+import { useDispatch } from "react-redux";
+import { authActions } from "../redux/auth/auth";
 
 interface HomeProps {
   hoodies: any;
 }
 
 const Home: NextPage<HomeProps> = ({ hoodies }) => {
+  const dispatch = useDispatch();
+  let token: string | null;
+
+  if (typeof window !== "undefined") {
+    token = localStorage.getItem("token");
+  }
+
+  useEffect(() => {
+    if (!token) return;
+    dispatch(authActions.retrieveStoredToken());
+    axios.get("/api/users").then((res) => {
+      const { id, fullName } = res.data.user;
+      dispatch(authActions.getProfile({ id, fullName }));
+    });
+  }, []);
+
   return (
     <React.Fragment>
       <Header />

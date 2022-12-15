@@ -8,7 +8,6 @@ interface ProductSectionProps {
 }
 
 const ProductSection: React.FC<ProductSectionProps> = ({ hoodies }) => {
-  console.log(hoodies);
   return (
     <Section
       id="product-section"
@@ -17,13 +16,8 @@ const ProductSection: React.FC<ProductSectionProps> = ({ hoodies }) => {
       {hoodies.map((hoodie: any) => {
         const { id, images, title, price, brand } = hoodie;
         return (
-          <Link href={`/product/${id}`}>
-            <Product
-              key={id}
-              imageCover={images[0]}
-              title={title}
-              price={price}
-            />
+          <Link href={`/product/${id}`} key={id}>
+            <Product imageCover={images[0]} title={title} price={price} />
           </Link>
         );
       })}

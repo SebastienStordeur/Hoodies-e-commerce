@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import httpGetProduct from "./products/getProduct";
+import httpGetProduct from "./products/[product]";
 import httpGetProducts from "./products/getProducts";
 
 export default function user(req: NextApiRequest, res: NextApiResponse) {

@@ -25,11 +25,19 @@ const ProductInfos: React.FC<ProductInfosProps> = ({
         </p>
       </div>
       Colors:
-      {colors.map((color) => {
-        return <span className="mx-1">{color}</span>;
+      {colors.map((color, index: number) => {
+        return (
+          <span className="mx-1" key={index}>
+            {color}
+          </span>
+        );
       })}
-      {size.map((itemSize) => {
-        return <span className="mx-1">{itemSize}</span>;
+      {size.map((itemSize, index: number) => {
+        return (
+          <span className="mx-1" key={index}>
+            {itemSize}
+          </span>
+        );
       })}
     </div>
   );

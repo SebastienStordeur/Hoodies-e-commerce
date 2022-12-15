@@ -26,7 +26,7 @@ export default async function httpLogin(
     } else {
       const payload = {
         id: user._id,
-        fullName: user.firstName + " " + user.lastName,
+        fullName: user.fullName,
       };
       const token = jwt.sign(payload, "fdsfdsf", { expiresIn: "90d" });
       return res.status(200).json({ status: 200, success: true, token });

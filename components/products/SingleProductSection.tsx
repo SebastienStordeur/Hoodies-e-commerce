@@ -9,16 +9,24 @@ interface SingleProductSection {
 
 const SingleProductSection: React.FC<SingleProductSection> = ({ hoodie }) => {
   const { id, title, brand, colors, size, images, price } = hoodie;
-
   return (
     <Section id={`${title} section`} className="flex">
       <div className="flex">
         <div className="grid gap-1  mr-4">
-          {images.map((image: string) => {
-            return <Image src={image} alt={title} width={80} height={80} />;
+          {images.map((image: string, index: number) => {
+            return (
+              <Image
+                key={index}
+                src={image}
+                alt={title}
+                width={80}
+                height={80}
+                priority
+              />
+            );
           })}
         </div>
-        <Image src={images[0]} alt="" width={300} height={400} />
+        <Image src={images[0]} alt="" width={300} height={400} priority />
       </div>
       <ProductInfos
         title={title}

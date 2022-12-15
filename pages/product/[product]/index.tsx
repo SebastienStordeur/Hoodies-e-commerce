@@ -10,7 +10,7 @@ interface ProductPageProps {
 }
 
 const ProductPage: NextPage<ProductPageProps> = ({ hoodie }) => {
-  console.log(hoodie);
+  /* console.log(hoodie); */
   return (
     <React.Fragment>
       <Header />
@@ -24,13 +24,9 @@ const ProductPage: NextPage<ProductPageProps> = ({ hoodie }) => {
 export default ProductPage;
 
 export async function getServerSideProps(context: any) {
-  const { id } = context.query;
-  console.log("id", context);
+  const id = context.query;
   const { data } = await axios.get(
-    `http://localhost:3000/api/products/getProduct`,
-    {
-      params: { id },
-    }
+    `http://localhost:3000/api/products/${id.product}`
   );
 
   return {
