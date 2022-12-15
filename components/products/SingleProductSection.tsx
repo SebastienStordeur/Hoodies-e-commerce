@@ -34,6 +34,7 @@ const SingleProductSection: React.FC<SingleProductSection> = ({ hoodie }) => {
         colors={colors}
         size={size}
         price={price}
+        id={id}
       ></ProductInfos>
     </Section>
   );

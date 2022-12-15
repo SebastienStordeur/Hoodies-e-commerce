@@ -2,6 +2,8 @@ import React from "react";
 import Button from "../../UI/Button";
 import ColorSelector from "./ColorSelector";
 import SizeSelector from "./SizeSelector";
+import { useDispatch } from "react-redux";
+import { cartActions } from "../../../redux/cart/cart";
 
 interface ProductInfosProps {
   title: string;
@@ -9,6 +11,7 @@ interface ProductInfosProps {
   price: string;
   brand: string;
   size: string[];
+  id: string;
 }
 
 const ProductInfos: React.FC<ProductInfosProps> = ({
@@ -17,7 +20,28 @@ const ProductInfos: React.FC<ProductInfosProps> = ({
   price,
   brand,
   size,
+  id,
 }) => {
+  const dispatch = useDispatch();
+
+  const addItemToCartHandler = () => {
+    const newItem = {
+      id,
+      title,
+      price,
+      quantity: 1,
+    };
+    console.log(newItem);
+    dispatch(
+      cartActions.addItemToCart({
+        id,
+        title,
+        price: 50,
+        quantity: 1,
+      })
+    );
+  };
+
   return (
     <div className="mx-8">
       <h2 className="text-3xl font-bold ">{title}</h2>
@@ -29,7 +53,9 @@ const ProductInfos: React.FC<ProductInfosProps> = ({
       </div>
       <ColorSelector colors={colors} />
       <SizeSelector size={size} />
-      <Button className="mt-8">Add To Cart</Button>
+      <Button className="mt-8" onClick={addItemToCartHandler}>
+        Add To Cart
+      </Button>
     </div>
   );
 };
