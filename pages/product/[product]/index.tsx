@@ -18,7 +18,7 @@ export interface Hoodie {
     colors: string[];
     images: string[];
     size: string[];
-    price: string;
+    price: number;
   };
 }
 

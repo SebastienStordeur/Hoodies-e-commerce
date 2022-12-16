@@ -25,18 +25,11 @@ const ProductInfos: React.FC<ProductInfosProps> = ({
   const dispatch = useDispatch();
 
   const addItemToCartHandler = () => {
-    const newItem = {
-      id,
-      title,
-      price,
-      quantity: 1,
-    };
-    console.log(newItem);
     dispatch(
       cartActions.addItemToCart({
         id,
         title,
-        price: 50,
+        price: JSON.parse(price),
         quantity: 1,
       })
     );
@@ -48,7 +41,7 @@ const ProductInfos: React.FC<ProductInfosProps> = ({
       <p className="font-semibold text-lg">Brand: {brand}</p>
       <div>
         <p className="font-semibold text-lg">
-          Price: <span className="text-red font-bold">{price}</span>
+          Price: <span className="text-red font-bold">{price}$</span>
         </p>
       </div>
       <ColorSelector colors={colors} />
