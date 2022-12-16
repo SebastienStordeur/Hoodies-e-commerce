@@ -1,10 +1,11 @@
 import Link from "next/link";
 import React from "react";
 import { Section } from "../";
+import { Hoodie } from "../../pages/product/[product]";
 import Product from "./Product";
 
 interface ProductSectionProps {
-  hoodies: any;
+  hoodies: Hoodie[];
 }
 
 const ProductSection: React.FC<ProductSectionProps> = ({ hoodies }) => {

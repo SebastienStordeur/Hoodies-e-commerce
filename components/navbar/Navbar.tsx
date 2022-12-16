@@ -46,7 +46,13 @@ const Navbar: React.FC = () => {
           {isAuthenticated && (
             <div className="flex items-center">
               <span className="relative" onClick={toggleCartHandler}>
-                <Image src={cartIcon} alt="Cart icon" width={24} height={24} />
+                <Image
+                  src={cartIcon}
+                  alt="Cart icon"
+                  width={24}
+                  height={24}
+                  className="aspect-square"
+                />
                 <span className="absolute -top-4 left-2.5">{quantity}</span>
               </span>
               <span className="flex p-1 ml-4" onClick={logout}>

@@ -36,7 +36,7 @@ const ProductInfos: React.FC<ProductInfosProps> = ({
   };
 
   return (
-    <div className="mx-8">
+    <div className="mb-8 sm:px-8 sm:w-full">
       <h2 className="text-3xl font-bold ">{title}</h2>
       <p className="font-semibold text-lg">Brand: {brand}</p>
       <div>

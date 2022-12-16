@@ -15,7 +15,7 @@ const Product: React.FC<ProductProps> = ({ imageCover, title, price }) => {
         <Image src={imageCover} alt={title} width={300} height={600} priority />
       </div>
       <h3 className="font-medium">{title}</h3>
-      <span className="font-semibold">{price}€</span>
+      <span className="font-semibold">{price}$</span>
     </Card>
   );
 };
