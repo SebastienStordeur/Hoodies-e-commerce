@@ -1,12 +1,15 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
+import jwt, { Secret } from "jsonwebtoken";
 import { MongoClient } from "mongodb";
+import { env } from "process";
+require("dotenv").config();
 
 export default async function httpLogin(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  const JWT_TOKEN: any = process.env.JWT_TOKEN;
   const url =
     "mongodb+srv://Sebastien:anrCqJLqSRmtM8Eh@cluster0.kdi6lcg.mongodb.net/hoodies";
   const { email, password } = req.body;
@@ -28,7 +31,9 @@ export default async function httpLogin(
         id: user._id,
         fullName: user.fullName,
       };
-      const token = jwt.sign(payload, "fdsfdsf", { expiresIn: "90d" });
+      const token = jwt.sign(payload, JWT_TOKEN /* "fdsfdsf" */, {
+        expiresIn: "90d",
+      });
       return res.status(200).json({ status: 200, success: true, token });
     }
   } else {
