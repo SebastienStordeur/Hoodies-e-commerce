@@ -1,8 +1,9 @@
 import axios from "axios";
 import { NextPage } from "next";
+import Head from "next/head";
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Header, Main, Section } from "../../../components";
+import { Header, Main } from "../../../components";
 import SingleProductSection from "../../../components/products/SingleProductSection";
 import { authActions } from "../../../redux/auth/auth";
 
@@ -11,6 +12,7 @@ interface ProductPageProps {
 }
 
 export interface Hoodie {
+  title(title: any): unknown;
   hoodie: {
     id: string;
     title: string;
@@ -39,8 +41,23 @@ const ProductPage: NextPage<ProductPageProps> = ({ hoodie }) => {
     });
   }, []);
 
+  console.log(hoodie.title);
+
   return (
     <React.Fragment>
+      <Head>
+        <meta charSet="utf-8" />
+        <title>{`Hoodies - ${hoodie.title}`}</title>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, viewport-fit=cover"
+        />
+        <meta
+          name="description"
+          content={`Buy ${hoodie.title} and start or complete your hoodies collection`}
+          data-react-helmet="true"
+        />
+      </Head>
       <Header />
       <Main>
         <SingleProductSection hoodie={hoodie}></SingleProductSection>

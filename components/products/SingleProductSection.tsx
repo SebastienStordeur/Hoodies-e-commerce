@@ -22,7 +22,9 @@ const SingleProductSection: React.FC<SingleProductSection> = ({ hoodie }) => {
           {images.map((image: string, index: number) => {
             return (
               <div
-                className="cursor-pointer w-24 sm:w-28 mr-2 mt-1"
+                className={`cursor-pointer w-24 sm:w-28 mr-2 mt-1 ${
+                  index === activeImage ? "border-black border" : ""
+                }`}
                 onClick={() => setActiveImage(index)}
                 key={index}
               >

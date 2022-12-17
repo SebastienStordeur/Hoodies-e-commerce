@@ -6,6 +6,7 @@ import { ProductSection } from "../components";
 import { useDispatch } from "react-redux";
 import { authActions } from "../redux/auth/auth";
 import { Hoodie } from "./product/[product]";
+import Head from "next/head";
 
 interface HomeProps {
   hoodies: Hoodie[];
@@ -30,6 +31,19 @@ const Home: NextPage<HomeProps> = ({ hoodies }) => {
 
   return (
     <React.Fragment>
+      <Head>
+        <meta charSet="utf-8" />
+        <title>Hoodies - Home</title>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, viewport-fit=cover"
+        />
+        <meta
+          name="description"
+          content="Hoodies is a non official shop selling hoodies"
+          data-react-helmet="true"
+        />
+      </Head>
       <Header />
       <ProductSection hoodies={hoodies} />
     </React.Fragment>
